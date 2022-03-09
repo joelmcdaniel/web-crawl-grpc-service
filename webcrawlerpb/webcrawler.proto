@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package webcrawler;
+
+option go_package = "./webcrawlerpb";
+
+service WebCrawler {
+    rpc Start (TreeRequest) returns (StartResponse) {}
+    rpc Stop (StopRequest) returns (StopResponse) {}
+    rpc List (ListRequest) returns (stream TreeRequest) {}
+}
+
+message TreeRequest {
+    string startUrl = 1;
+    string treeLink = 2;
+    string pageTitle = 3;
+}
+
+message StartResponse {
+    string message = 1;
+}
+
+message StopRequest {
+    string stopUrl = 1;
+}
+
+message StopResponse {
+    string message = 1;
+}
+
+message ListRequest {
+}
